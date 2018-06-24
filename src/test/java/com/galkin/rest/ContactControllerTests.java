@@ -46,7 +46,7 @@ public class ContactControllerTests {
 
     @Test
     public void testGetAllContactsId() throws Exception {
-        List<Contact> contacts = Arrays.asList(new Contact(25), new Contact(26), new Contact(46), new Contact(99));
+        List<Contact> contacts = Arrays.asList(new Contact(25L), new Contact(26L), new Contact(46L), new Contact(99L));
         when(contactService.getAllContacts()).thenReturn(contacts);
         mockMvc.perform(get("/contacts"))
                 .andExpect(status().isOk())
@@ -62,7 +62,7 @@ public class ContactControllerTests {
 
     @Test
     public void testGetLastApplicationButNotAnyApplicationsExistOrNotContactExist() throws Exception {
-        when(contactService.getLastApplication(1l)).thenThrow(new NotFoundException());
+        when(contactService.getLastApplication(1L)).thenThrow(new NotFoundException());
         mockMvc.perform(get("/contacts/{id}", 1L))
                 .andExpect(status().isNotFound());
         verify(contactService, times(1)).getLastApplication(1L);
