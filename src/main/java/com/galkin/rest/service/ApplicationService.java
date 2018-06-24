@@ -58,7 +58,7 @@ public class ApplicationService {
 
     public ResponseEntity<?> deleteApplication(Long contactId, Long applicationId) {
         if(!contactRepository.existsById(contactId)) {
-            throw new NotFoundException();
+            throw new NotFoundException("CONTACT_ID " + contactId + "not found.");
         }
         return applicationRepository.findById(applicationId).map(application -> {
             applicationRepository.delete(application);

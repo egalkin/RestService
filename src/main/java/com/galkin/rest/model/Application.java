@@ -33,7 +33,7 @@ public class Application implements Comparable, Serializable {
 
     }
 
-    public Application(final Long id, String productName, Date dtCreated) {
+    public Application(final Long id, final String productName, final Date dtCreated) {
         this();
         this.id = id;
         this.productName = productName;
@@ -55,7 +55,7 @@ public class Application implements Comparable, Serializable {
     }
 
     @JsonProperty("APPLICATION_ID")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
