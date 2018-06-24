@@ -14,8 +14,8 @@ import java.util.Date;
 @Table(name = "applications")
 public class Application implements Comparable, Serializable {
     @Id
-    @Column(name = "APPLICATION_ID", unique = true)
-    private long id;
+    @Column(name = "APPLICATION_ID", unique = true, nullable = false)
+    private Long id;
     @Column(name = "PRODUCT_NAME", nullable = false)
     private String productName;
     @Temporal(TemporalType.TIMESTAMP)
@@ -33,7 +33,7 @@ public class Application implements Comparable, Serializable {
 
     }
 
-    public Application(final long id, String productName, Date dtCreated) {
+    public Application(final Long id, String productName, Date dtCreated) {
         this();
         this.id = id;
         this.productName = productName;
@@ -45,12 +45,12 @@ public class Application implements Comparable, Serializable {
         return this.dtCreated;
     }
 
-    public void setDtCreated(Date dtCreated) {
+    public void setDtCreated(final Date dtCreated) {
         this.dtCreated = dtCreated;
     }
 
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -59,7 +59,7 @@ public class Application implements Comparable, Serializable {
         return id;
     }
 
-    public void setProductName(String name) {
+    public void setProductName(final String name) {
         this.productName = name;
     }
 
@@ -68,7 +68,7 @@ public class Application implements Comparable, Serializable {
         return this.productName;
     }
 
-    public void setContact(Contact contact) {
+    public void setContact(final Contact contact) {
         this.contact = contact;
     }
 

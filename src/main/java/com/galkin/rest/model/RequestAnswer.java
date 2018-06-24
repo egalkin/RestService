@@ -15,7 +15,7 @@ public class RequestAnswer implements Serializable {
 
     }
 
-    public RequestAnswer(final long contactId, Application application) {
+    public RequestAnswer(final Long contactId, final Application application) {
         this();
         this.contactId = Long.toString(contactId);
         this.applicationId = Long.toString(application.getId());
@@ -28,7 +28,7 @@ public class RequestAnswer implements Serializable {
         return this.contactId;
     }
 
-    public void setContactId(int contactId) {
+    public void setContactId(final Long contactId) {
         this.contactId = Long.toString(contactId);
     }
 
@@ -37,7 +37,7 @@ public class RequestAnswer implements Serializable {
         return this.applicationId;
     }
 
-    public void setApplicationId(int applicationId) {
+    public void setApplicationId(final Long applicationId) {
         this.applicationId = Long.toString(applicationId);
     }
 
@@ -46,7 +46,7 @@ public class RequestAnswer implements Serializable {
         return this.dtCreated;
     }
 
-    public void setProductName(String productName) {
+    public void setProductName(final String productName) {
         this.productName = productName;
     }
 

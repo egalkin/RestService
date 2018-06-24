@@ -9,26 +9,26 @@ import java.io.Serializable;
 @Table(name = "contacts")
 public class Contact implements Serializable {
     @Id
-    @Column(name = "CONTACT_ID", unique = true)
-    private long id;
+    @Column(name = "CONTACT_ID", unique = true, nullable = false)
+    private Long id;
 
 
     public Contact() {
 
     }
 
-    public Contact(final int id) {
+    public Contact(final Long id) {
         this();
         this.id = id;
     }
 
     @JsonProperty("CONTACT_ID")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
 
-    public void setId(long id){
+    public void setId(final Long id){
         this.id = id;
     }
 
