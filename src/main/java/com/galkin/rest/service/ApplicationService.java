@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Set;
 
 @Service
@@ -52,6 +53,7 @@ public class ApplicationService {
         }
         return applicationRepository.findById(applicationId).map(Application -> {
             Application.setProductName(applicationRequest.getProductName());
+            Application.setDtCreated(new Date());
             return applicationRepository.save(Application);
         }).orElseThrow(() -> new NotFoundException("Application with given APPLICATION_ID " + applicationId + " not found."));
     }
