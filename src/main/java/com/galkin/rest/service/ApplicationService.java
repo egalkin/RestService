@@ -39,12 +39,10 @@ public class ApplicationService {
     }
 
     public Application createApplication(Long contactId, Application application) {
-        if (!contactRepository.existsById(contactId))
-            throw new NotFoundException("CONTACT_ID " + contactId + " not found.");
         return contactRepository.findById(contactId).map(contact -> {
             application.setContact(contact);
             return applicationRepository.save(application);
-        }).orElseThrow(NotFoundException::new);
+        }).orElseThrow(() -> new NotFoundException("CONTACT_ID " + contactId + " not found."));
     }
 
     public Application updateApplication(Long contactId, Long applicationId, Application applicationRequest) {
