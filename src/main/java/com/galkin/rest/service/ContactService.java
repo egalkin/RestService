@@ -44,13 +44,6 @@ public class ContactService {
         return new RequestAnswer(contactId, answer.first());
     }
 
-    public Contact updateContact(Long contactId, Contact contactRequest) {
-        return contactRepository.findById(contactId).map(contact -> {
-            contact.setId(contactRequest.getId());
-            return contactRepository.save(contact);
-        }).orElseThrow(() -> new NotFoundException("CONTACT_ID " + contactId + " not found."));
-    }
-
     public ResponseEntity<?> deleteContact(Long contactId) {
         return contactRepository.findById(contactId).map(Client -> {
             contactRepository.delete(Client);

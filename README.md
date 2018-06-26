@@ -14,7 +14,6 @@ mvnw clean package.
 /contacts - post Contact. \
 /contacts/{contactId}/applications - post Applications.
 ## PUT: 
-/contacts/{contactId} - updates Contact with given ID. \
 /contacts/{contactId}/applications/{applicationId} - updates Application with given ID. 
 ## DELETE:
 /contacts/{contactId} - delete Contact with given ID. \

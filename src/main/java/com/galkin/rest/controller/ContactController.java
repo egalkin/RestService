@@ -32,12 +32,6 @@ public class ContactController {
         return contactService.getLastApplication(contactId);
     }
 
-    @PutMapping("/contacts/{contactId}")
-    public Contact updateContact(@PathVariable Long contactId, @RequestBody Contact contactRequest) {
-        return contactService.updateContact(contactId, contactRequest);
-    }
-
-
     @DeleteMapping("/contacts/{contactId}")
     public ResponseEntity<?> deleteClient(@PathVariable Long contactId) {
         return contactService.deleteContact(contactId);
