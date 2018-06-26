@@ -1,11 +1,10 @@
 package com.galkin.rest;
 
-
 import com.galkin.rest.controller.ContactController;
 import com.galkin.rest.exception.NotFoundException;
 import com.galkin.rest.model.Application;
+import com.galkin.rest.model.ApplicationDTO;
 import com.galkin.rest.model.Contact;
-import com.galkin.rest.model.RequestAnswer;
 import com.galkin.rest.service.ContactService;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +22,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import java.util.Date;
+
 import java.util.Arrays;
 
 
@@ -72,7 +71,7 @@ public class ContactControllerTests {
     @Test
     public void testGetLastApplication() throws Exception {
         Application application = new Application(27L ,"Book", new Date());
-        RequestAnswer answer = new RequestAnswer(99L, application);
+        ApplicationDTO answer = new ApplicationDTO(99L, application);
         when(contactService.getLastApplication(99L)).thenReturn(answer);
         mockMvc.perform(get("/contacts/99"))
                 .andExpect(status().isOk())

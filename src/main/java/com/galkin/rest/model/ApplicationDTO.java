@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-public class RequestAnswer implements Serializable {
+public class ApplicationDTO implements Serializable{
 
     private String contactId;
     private String applicationId;
     private String dtCreated;
     private String productName;
 
-    public RequestAnswer() {
+    public ApplicationDTO() {
 
     }
 
-    public RequestAnswer(final Long contactId, final Application application) {
+    public ApplicationDTO(final Long contactId, final Application application) {
         this();
         this.contactId = Long.toString(contactId);
         this.applicationId = Long.toString(application.getId());

@@ -3,15 +3,13 @@ package com.galkin.rest.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "contacts")
-public class Contact implements Serializable {
+public class Contact {
     @Id
     @Column(name = "CONTACT_ID", unique = true, nullable = false)
     private Long id;
-
 
     public Contact() {
 
@@ -31,7 +29,6 @@ public class Contact implements Serializable {
     public void setId(final Long id){
         this.id = id;
     }
-
 
 
     @Override

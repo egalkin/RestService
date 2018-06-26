@@ -1,7 +1,7 @@
 package com.galkin.rest.controller;
 
 import com.galkin.rest.model.Contact;
-import com.galkin.rest.model.RequestAnswer;
+import com.galkin.rest.model.ApplicationDTO;
 import com.galkin.rest.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,12 @@ import java.util.List;
 @RestController
 public class ContactController {
 
-    @Autowired
-    private ContactService contactService;
+    private final ContactService contactService;
 
+    @Autowired
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
+    }
 
     @GetMapping("/contacts")
     public List<Contact> getAllClients() {
@@ -28,7 +31,7 @@ public class ContactController {
     }
 
     @GetMapping("/contacts/{contactId}")
-    public RequestAnswer getClientLastApplication(@PathVariable Long contactId) {
+    public ApplicationDTO getClientLastApplication(@PathVariable Long contactId) {
         return contactService.getLastApplication(contactId);
     }
 

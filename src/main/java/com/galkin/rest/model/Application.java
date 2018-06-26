@@ -8,13 +8,12 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "applications")
-public class Application implements Comparable, Serializable {
+public class Application {
     @Id
     @Column(name = "APPLICATION_ID", unique = true, nullable = false)
     private Long id;
@@ -78,12 +77,6 @@ public class Application implements Comparable, Serializable {
 
     public Contact getContact() {
         return this.contact;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        int compareTime = -(this.dtCreated.compareTo(((Application) o).dtCreated));
-        return compareTime == 0 ? -1 : compareTime;
     }
 
 

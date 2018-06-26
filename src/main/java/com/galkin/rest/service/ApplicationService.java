@@ -5,30 +5,27 @@ import com.galkin.rest.model.Application;
 import com.galkin.rest.repository.ApplicationRepository;
 import com.galkin.rest.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class ApplicationService {
 
-    @Autowired
-    private ApplicationRepository applicationRepository;
+    private final ApplicationRepository applicationRepository;
+    private final ContactRepository contactRepository;
 
     @Autowired
-    private ContactRepository contactRepository;
+    public ApplicationService(ApplicationRepository applicationRepository, ContactRepository contactRepository) {
+        this.applicationRepository = applicationRepository;
+        this.contactRepository = contactRepository;
+    }
 
-    public Set<Application> getAllApplications(Long contactId) {
-        if (!contactRepository.existsById(contactId)) {
-            throw new NotFoundException("CONTACT_ID " + contactId + " not found.");
-        }
-        Set<Application> applications = applicationRepository.findByContactId(contactId);
-        if (applications.isEmpty()) {
-            throw new NotFoundException("Applications for CONTACT_ID " + contactId + " not found.");
-        }
-        return applicationRepository.findByContactId(contactId);
+    public List<Application> getAllApplications(Long contactId, Pageable pageable) {
+        return applicationRepository.findByContactId(contactId, pageable);
     }
 
     public Application getApplication(Long contactId, Long applicationId) {
@@ -57,12 +54,9 @@ public class ApplicationService {
     }
 
     public ResponseEntity<?> deleteApplication(Long contactId, Long applicationId) {
-        if(!contactRepository.existsById(contactId)) {
-            throw new NotFoundException("CONTACT_ID " + contactId + "not found.");
+        if (contactRepository.existsById(contactId)) {
+            applicationRepository.deleteById(applicationId);
         }
-        return applicationRepository.findById(applicationId).map(application -> {
-            applicationRepository.delete(application);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new NotFoundException("Application with given APPLICATION_ID " + applicationId +  "not found."));
+        return ResponseEntity.ok().build();
     }
 }

@@ -3,22 +3,29 @@ package com.galkin.rest.controller;
 import com.galkin.rest.model.Application;
 import com.galkin.rest.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Set;
+import java.util.List;
 
 
 @RestController
 public class ApplicationController {
 
+
+    private final ApplicationService applicationService;
+
     @Autowired
-    private ApplicationService applicationService;
+    public ApplicationController(ApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
 
     @GetMapping("/contacts/{contactId}/applications")
-    public Set<Application> getAllApplicationsByContactId(@PathVariable (value = "contactId") Long contactId) {
-        return applicationService.getAllApplications(contactId);
+    public List<Application> getAllApplicationsByContactId(@PathVariable (value = "contactId") Long contactId,
+                                              Pageable pageable) {
+        return applicationService.getAllApplications(contactId, pageable);
 
     }
 
