@@ -5,19 +5,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "applications")
 public class Application implements Comparable, Serializable {
     @Id
     @Column(name = "APPLICATION_ID", unique = true, nullable = false)
     private Long id;
+
     @Column(name = "PRODUCT_NAME", nullable = false)
     private String productName;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DT_CREATED", nullable = false, updatable = false)
     @CreatedDate
