@@ -49,10 +49,10 @@ public class ApplicationService {
         if(!contactRepository.existsById(contactId)) {
             throw new NotFoundException("CONTACT_ID " + contactId + "not found.");
         }
-        return applicationRepository.findById(applicationId).map(Application -> {
-            Application.setProductName(applicationRequest.getProductName());
-            Application.setDtCreated(new Date());
-            return applicationRepository.save(Application);
+        return applicationRepository.findById(applicationId).map(application -> {
+            application.setProductName(applicationRequest.getProductName());
+            application.setDtCreated(new Date());
+            return applicationRepository.save(application);
         }).orElseThrow(() -> new NotFoundException("Application with given APPLICATION_ID " + applicationId + " not found."));
     }
 
