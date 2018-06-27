@@ -3,7 +3,7 @@ Rest Service.
 # Build with Maven:
 mvnw clean package.
 # CONTACT_IDs presented in DataBase from start:
-25, 26, 46, 99.
+14, 19, 25, 26, 43, 46, 51, 99.
 # Supported commands:
 ## GET: 
 /contacts - returns list of Contacts presented in DB. \

@@ -45,16 +45,21 @@ public class ContactControllerTests {
 
     @Test
     public void testGetAllContactsId() throws Exception {
-        List<Contact> contacts = Arrays.asList(new Contact(25L), new Contact(26L), new Contact(46L), new Contact(99L));
+        List<Contact> contacts = Arrays.asList(new Contact(14L), new Contact(19L), new Contact(25L), new Contact(26L),
+                                                new Contact(43L), new Contact(46L), new Contact(51L), new Contact(99L));
         when(contactService.getAllContacts()).thenReturn(contacts);
         mockMvc.perform(get("/contacts"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$", hasSize(4)))
-                .andExpect(jsonPath("$[0].CONTACT_ID", is(25)))
-                .andExpect(jsonPath("$[1].CONTACT_ID", is(26)))
-                .andExpect(jsonPath("$[2].CONTACT_ID", is(46)))
-                .andExpect(jsonPath("$[3].CONTACT_ID", is(99)));
+                .andExpect(jsonPath("$", hasSize(8)))
+                .andExpect(jsonPath("$[0].CONTACT_ID", is(14)))
+                .andExpect(jsonPath("$[1].CONTACT_ID", is(19)))
+                .andExpect(jsonPath("$[2].CONTACT_ID", is(25)))
+                .andExpect(jsonPath("$[3].CONTACT_ID", is(26)))
+                .andExpect(jsonPath("$[4].CONTACT_ID", is(43)))
+                .andExpect(jsonPath("$[5].CONTACT_ID", is(46)))
+                .andExpect(jsonPath("$[6].CONTACT_ID", is(51)))
+                .andExpect(jsonPath("$[7].CONTACT_ID", is(99)));
         verify(contactService, times(1)).getAllContacts();
         verifyNoMoreInteractions(contactService);
     }
