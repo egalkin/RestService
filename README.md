@@ -8,7 +8,7 @@ mvnw clean package.
 ## GET: 
 /contacts - returns list of Contacts presented in DB. \
 /contacts/{contactId} - returns last contacts application if presented. \
-/contacts/{contactId}/applications - returns Set of contacts applications presented in DB. \
+/contacts/{contactId}/applications - returns List of contacts applications presented in DB. \
 /contacts/{contactId}/applications/{applicationId} - returns applications with given id if presented.
 ## POST:
 /contacts - post Contact. \
